@@ -97,7 +97,7 @@ def mov_jugador1(tablero):
 
     while True:
         if posicion not in posiciones:
-            posicion = input("Escoge la casilla (1-9): ")
+            posicion = int(input("Escoge la casilla (1-9): "))
 
             return posicion - 1
         else:

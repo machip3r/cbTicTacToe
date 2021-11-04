@@ -1,158 +1,158 @@
 import random
 
-def mostrar_tablero(tablero):
-    print("\n\tGATO\n")
+def showDashboard(dashboard):
+    print("\n\tTIC TAC TOE\n")
     print("1     |2     |3")
-    print("  " + tablero[0] + "   |   " + tablero[1] + "  |  " + tablero[2] + "   ")
+    print("  " + dashboard[0] + "   |   " + dashboard[1] + "  |  " + dashboard[2] + "   ")
     print("      |      | ")
     print("------+------+------")
     print("4     |5     |6")
-    print("  " + tablero[3] + "   |   " + tablero[4] + "  |  " + tablero[5] + "")
+    print("  " + dashboard[3] + "   |   " + dashboard[4] + "  |  " + dashboard[5] + "")
     print("      |      | ")
     print("------+------+------")
     print("7     |8     |9")
-    print("  " + tablero[6] + "   |   " + tablero[7] + "  |  " + tablero[8] + "")
+    print("  " + dashboard[6] + "   |   " + dashboard[7] + "  |  " + dashboard[8] + "")
     print("      |      | ")
     print("\n")
 
-def seguir_jugando():
+def keepPlaying():
     print("\n")
-    respuesta = input("¿Quieres seguir jugando?").lower()
+    answer = input("¿Quieres seguir jugando?").lower()
 
-    if respuesta == "si" or respuesta == "yes":
+    if answer == "si" or answer == "yes":
         return True
     else:
         return False
 
 
-def ganador(tablero, jugador1, jugador2):
-    if jugador1 == "X":
-        turno = "Jugador 1"
+def win(dashboard, player):
+    if player == "X":
+        shift = "Jugador 1"
     else:
-        turno = "Jugador 2"
-    if tablero[0] == tablero[1] == tablero[2] != " ":
+        shift = "Jugador 2"
+
+    if dashboard[0] == dashboard[1] == dashboard[2] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[3] == tablero[4] == tablero[5] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[3] == dashboard[4] == dashboard[5] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[6] == tablero[7] == tablero[8] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[6] == dashboard[7] == dashboard[8] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[0] == tablero[3] == tablero[6] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[0] == dashboard[3] == dashboard[6] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[1] == tablero[4] == tablero[7] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[1] == dashboard[4] == dashboard[7] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[3] == tablero[5] == tablero[8] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[3] == dashboard[5] == dashboard[8] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[0] == tablero[4] == tablero[8] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[0] == dashboard[4] == dashboard[8] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
-    elif tablero[2] == tablero[4] == tablero[6] != " ":
+        print("El " + shift + " ganó")
+        return False
+    elif dashboard[2] == dashboard[4] == dashboard[6] != " ":
         print("\n")
-        print("Se acabo la partida")
+        print("Se acabó la partida")
         print("\n")
-        print("El jugador " + turno + " ganó !!")
-        return True
+        print("El " + shift + " ganó")
+        return False
+
+    return True
 
 
-def tablero_lleno(tablero):
-    for i in tablero:
+def fullDashboard(dashboard):
+    for i in dashboard:
         if i == " ":
             return False
 
 
-def casilla_libre(tablero, casilla):
-    return tablero[casilla] == " "
+def freeBox(dashboard, box):
+    return dashboard[box] == " "
 
 
-def mov_jugador1(tablero):
-    posicion = None;
-    posiciones = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+def player1Move(dashboard):
+    position = None;
+    positions = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-    while True:
-        if posicion not in posiciones:
-            posicion = int(input("Escoge la casilla (1-9): "))
+    if position not in positions:
+        position = int(input("Escoge la casilla (1-9): "))
 
-            return posicion - 1
+        return (position - 1)
+    else:
+        position = int(position)
+        if not freeBox(dashboard, (position - 1)):
+            print("Esta posición ha sido ocupada, porfavor ingresa otro número")
         else:
-            posicion = int(posicion)
-            if not casilla_libre(tablero, posicion-1):
-                print("Esta posición ha sido ocupada, porfavor ingresa otro número")
-            else:
-                return posicion - 1
+            return (position - 1)
 
-def mov_jugador2(tablero, jugador2, jugador1):
-    posicion = None;
-    posiciones = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+def player2Move(dashboard):
+    position = None;
+    positions = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-    while True:
-        if posicion not in posiciones:
-            posicion = int(input("Escoge la casilla (1-9): "))
-            return posicion - 1
+    if position not in positions:
+        position = int(input("Escoge la casilla (1-9): "))
+        return (position - 1)
+    else:
+        position = int(position)
+        if not freeBox(dashboard, (position - 1)):
+            print("Esta posición ha sido ocupada, porfavor ingresa otro número")
         else:
-            posicion = int(posicion)
-            if not casilla_libre(tablero, posicion-1):
-                print("Esta posición ha sido ocupada, porfavor ingresa otro número")
-            else:
-                return posicion - 1
+            return (position - 1)
 
-def juego():
-    turno = "Jugador 1"
-    jugador1 = "X";
-    jugador2 = "O";
-    jugando = True
+def play():
+    shift = "Jugador 1"
+    player1 = "X";
+    player2 = "O";
+    playing = True
 
-    while jugando:
-        tablero = [" "] * 9
+    while playing:
+        dashboard = [" "] * 9
 
-        mostrar_tablero(tablero)
+        showDashboard(dashboard)
 
-        partida = True
-        while partida:
-            if tablero_lleno(tablero):
+        game = True
+        while game:
+            if fullDashboard(dashboard):
                 print("Empate")
-                partida = False
+                game = False
 
-            elif turno == "Jugador 1":
-                casilla = mov_jugador1(tablero)
-                tablero[casilla] = jugador1
-                turno = "Jugador 2"
-                mostrar_tablero(tablero)
-                ganador(tablero, jugador1, jugador2)
+            if shift == "Jugador 1":
+                box = player1Move(dashboard)
+                dashboard[box] = player1
+                shift = "Jugador 2"
+                showDashboard(dashboard)
+                game = win(dashboard, player1)
 
-            elif turno == "Jugador 2":
-                casilla = mov_jugador2(tablero, jugador2, jugador1)
-                tablero[casilla] = jugador2
-                turno = "Jugador 1"
-                mostrar_tablero(tablero)
-                ganador(tablero, jugador2, jugador1)
+            elif shift == "Jugador 2":
+                box = player2Move(dashboard)
+                dashboard[box] = player2
+                shift = "Jugador 1"
+                showDashboard(dashboard)
+                game = win(dashboard, player2)
 
-        jugando = seguir_jugando()
+        playing = keepPlaying()
 
-
-juego()
+play()

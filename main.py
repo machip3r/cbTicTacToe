@@ -1,4 +1,3 @@
-# - *- coding: utf- 8 - *-
 import random
 
 def mostrar_tablero(tablero):
